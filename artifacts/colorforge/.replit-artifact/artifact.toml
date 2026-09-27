@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ColorForge"
+description = "A production-ready reverse-engineering workspace that analyzes UI screenshots into actionable design specifications, tokens, components, layout rules, and implementation-ready exports."
+version = "1.0.0"
+id = "artifacts/colorforge"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19479
+
+[services.development]
+run = "pnpm --filter @workspace/colorforge run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/colorforge", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/colorforge/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19479"
+BASE_PATH = "/"
