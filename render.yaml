@@ -2,7 +2,7 @@ services:
   - type: web
     name: colorforge
     runtime: static
-    buildCommand: corepack enable && corepack prepare pnpm@10.26.1 --activate && pnpm install --frozen-lockfile && PORT=10000 BASE_PATH=/ pnpm --filter @workspace/colorforge run build
+    buildCommand: pnpm install --frozen-lockfile && PORT=10000 BASE_PATH=/ pnpm --filter @workspace/colorforge run build
     staticPublishPath: artifacts/colorforge/dist/public
     pullRequestPreviewsEnabled: true
     envVars:
